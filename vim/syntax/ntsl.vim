@@ -6,9 +6,25 @@ if exists("b:current_syntax")
   finish
 endif
 
-" Reaproveita a gramatica do Pascal, jah embutida no Vim
+" Reaproveita a gramatica do Pascal, jah embutida no Vim.
+" pascal_gpc habilita strings entre aspas duplas (usadas no NTSL, ex.:
+" Alert("texto")) como pascalString normal; sem essa flag, o pascal.vim
+" trata "..." como pascalStringError (grupo Error, branco em fundo
+" vermelho). De brinde, tambem habilita comentarios de linha "//".
+" A flag eh global (nao ha equivalente por-buffer no pascal.vim), entao
+" soh definimos/removemos se o usuario ainda nao tinha configurado a dele
+" (ex.: para arquivos .pas reais), pra nao vazar esse estado pra outros
+" buffers na mesma sessao.
+let s:had_pascal_gpc = exists("pascal_gpc")
+if !s:had_pascal_gpc
+  let pascal_gpc = 1
+endif
 runtime! syntax/pascal.vim
 unlet! b:current_syntax
+if !s:had_pascal_gpc
+  unlet! pascal_gpc
+endif
+unlet s:had_pascal_gpc
 
 " ---------------------------------------------------------------------------
 " Secao Input: declaracao de parametros de entrada da estrategia
@@ -16,9 +32,20 @@ unlet! b:current_syntax
 "   Input
 "       Preco (Close);
 "       Periodo (2);
-" ---------------------------------------------------------------------------
-syn keyword ntslInputKeyword Input contained
+"
+" O pascal.vim trata "Input"/"Output" como identificadores predefinidos de
+" E/S padrao do Pascal (pascalPredefined). Por regra do Vim, uma keyword
+" sempre tem prioridade sobre match/region na mesma posicao -- entao,
+" enquanto "Input" for uma keyword de outro grupo, a regiao abaixo nunca
+" conseguiria comecar ali. Removemos soh "Input" desse grupo (mantendo o
+" resto: self/Result/Output) pra liberar a posicao pra nossa regiao.
+syn clear pascalPredefined
+syn keyword pascalPredefined self Output
+if !exists("pascal_fpc")
+  syn keyword pascalPredefined Result
+endif
 
+syn keyword ntslInputKeyword Input contained
 syn region ntslInputBlock start="\c\<Input\>" end="\c\ze\<\(Var\|Begin\)\>" contains=ntslInputKeyword,ntslInputParam,pascalComment,pascalString,pascalNumber,pascalFloat
 syn match ntslInputParam "[A-Za-zÀ-ÿ_][A-Za-zÀ-ÿ0-9_]*\ze\s*(" contained contains=NONE
 
