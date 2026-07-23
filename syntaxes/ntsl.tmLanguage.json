@@ -1,0 +1,161 @@
+{
+  "scopeName": "source.ntsl",
+  "patterns": [
+    {
+      "include": "#ntsl-input-block"
+    },
+    {
+      "include": "#ntsl-functions-alarme"
+    },
+    {
+      "include": "#ntsl-functions-backtesting"
+    },
+    {
+      "include": "#ntsl-functions-calendario"
+    },
+    {
+      "include": "#ntsl-functions-candlestick"
+    },
+    {
+      "include": "#ntsl-functions-graficas"
+    },
+    {
+      "include": "#ntsl-functions-indicadores"
+    },
+    {
+      "include": "#ntsl-functions-livro"
+    },
+    {
+      "include": "#ntsl-functions-matematicas"
+    },
+    {
+      "include": "#ntsl-functions-opcoes"
+    },
+    {
+      "include": "#ntsl-functions-screening"
+    },
+    {
+      "include": "#ntsl-functions-usuario"
+    },
+    {
+      "include": "#ntsl-functions-utils"
+    },
+    {
+      "include": "source.pascal"
+    }
+  ],
+  "repository": {
+    "ntsl-input-block": {
+      "begin": "(?i)\\b(Input)\\b",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.declaration.ntsl" }
+      },
+      "end": "(?i)(?=\\b(Var|Begin)\\b)",
+      "patterns": [
+        {
+          "match": "[A-Za-zÀ-ÿ_][A-Za-zÀ-ÿ0-9_]*(?=\\s*\\()",
+          "name": "variable.other.constant.ntsl"
+        },
+        {
+          "include": "source.pascal"
+        }
+      ]
+    },
+    "ntsl-functions-alarme": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(Alert)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-backtesting": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(AutomationResult|AvgTradeResult|AvgTradeResultDaily|BuyAtMarket|BuyLimit|BuyPosition|BuyPositionQty|BuyPrice|BuyStop|BuyToCoverAtMarket|BuyToCoverLimit|BuyToCoverStop|CancelPendingOrders|ClosePosition|DailyResult|HasPendingOrders|HasPosition|IsBought|IsSold|LastTradeResult|MyPrice|NumberOfPendingOrders|OpenResult|Position|PositionQty|Price|ReversePosition|SellPosition|SellPositionQty|SellPrice|SellShortAtMarket|SellShortLimit|SellShortStop|SellToCoverAtMarket|SellToCoverLimit|SellToCoverStop|SendOrder|XRay)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-calendario": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(BarAnnualization|BarDuration|BarDurationF|Bartype|CalcDate|CalcTime|CalcWorkingDate|CloseD|CloseM|CloseW|CloseY|CurrentAssetDate|CurrentDate|CurrentTime|Date|DayOfMonth|DayOfWeek|DaysToExpiration|ELDate|ELDate_Consol|FindBar|FirstWorkingDayOfMonth|FirstWorkingDayOfWeek|FirstWorkingDayOfYear|Friday|HighD|HighM|HighW|HighY|IsWorkingDay|LastCalcDate|LastCalcTime|LastDayOfMonth|LastWorkingDayOfMonth|LastWorkingDayOfWeek|LastWorkingDayOfYear|LowD|LowM|LowW|LowY|MinutesIntoWeek|Monday|Month|Next3rdFriday|OpenD|OpenM|OpenW|OpenY|QuarterEnd|QuarterStart|RS_BarsPerDay|Saturday|Sunday|Thursday|Time|TimeExchange|TimeToMinutes|Today|Tuesday|VolumeD|VolumeM|VolumeW|VolumeY|Wednesday|Year|Yesterday)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-candlestick": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(C_3WhSolds_3BlkCrows|C_BullEng_BearEng|C_Doji|C_Hammer_HangingMan|C_MornDoji_EveDoji|C_MornStar_EveStar|C_PierceLine_DkCloud|C_ShootingStar)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-graficas": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(AvgPrice|BarCount|ConsoleLog|CurrentBar|GetPlotColor|GetPlotWidth|GraphicInterval|GraphicOffset|HorizontalLine|HorizontalLineCustom|LastBarOnChart|Leader|LineSegment|MaxBarsBack|MaxBarsForward|MedianPrice|NoPlot|PaintBar|Plot|Plot2|Plot3|Plot99|PlotCandle|PlotN|PlotText|RGB|Range|RangeLeader|SetPlotColor|SetPlotStyle|SetPlotType|SetPlotWidth|TrueHigh|TrueLow|TrueRange|TrueRangeCustom|TypicalPrice|VerticalLine|VerticalLineCustom|WeightedClose)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-indicadores": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(ADX|AccAgressSaldo|AccuDistr|AccuDistrW|AdaptiveMovingAverage|AgressionVolBalance|AgressionVolBuy|AgressionVolSell|AllTimeHigh|AllTimeLow|ArmsEaseOfMov|AroonLin|AroonOsc|AutoFibonacci|AutoFibonacciCustom|Averan|AvgAgent|AvgAgrBuySell|AvgAgrTotal|AvgSeparation|AvgTrueRange|BTCPrice|BTCSpread|BalanceAgent|BalanceOfPower|BearPower|BidAsk|BollingerBPerc|BollingerBandW|BollingerBands|BullPower|CCI|COHENPRICEWAVE|COHENWEISWAVE|ChaikinMoneyFlow|ChaikinOsc|ChainSetup|ContadorDeCandle|DTOscillator|DarvasBox|DecisionPoints|DiDiIndex|DiMaisDiMenos|DiPDiM|DivergenceDetector|DonchianCh|EMA|Envelope|Euroinvest|FastStochastic|FastWMA|FgzRobot|FinancialVol|ForceIndex|FrassonATR|FrassonVH|FullStochastic|FuraChao|FuraTeto|HeikinAshi|HiLoActivator|HighestVolume|HighestVolumePrice|HistVolatility|HullMovingAverage|IFR|IchimokuCloud|ImpliedVolatility|KVO|KeltnerCH|LSVolatilityIndex|LinearRegressionChannel|MACD|MADRIDMOVINGAVERAGE|MADRIDTRENDSQUEEZE|MAGOMACD|MAGOMEDIAS|MFI|MIMA|MIMAROC|Momentum|MomentumStochastic|MoneyFlow|MoneyFlowIndex|NelogicaBottomFinder|NelogicaPullBackFinder|NelogicaWeisWave|OBV|OBVAvg|OnBalanceTR|OpenDaily|OpenInterest|PTAX|PTAXFuturo|PaintVar|ParabolicSAR|Phibo|Pivot|PowerMeter|PriceNery|PriceOsc|PriceVolumeTrend|PriorCote|QuantityVol|RBG|ROC|RSI|Rafi|Ravi|RenkoVTwo|RsiStochastic|SMA|SOMOSRENKOTRENDMPONTO|SafeZoneDownTrend|SafeZoneUpTrend|SampleAverage|SampleBollinger|SampleMACD|SampleRSI|SampleStochastic|SampleVWAP|Santo|SlowStochastic|StdDevConstPeriod|StopATR|TENDENCYTRACKER|TOSCANABRUNELLO|TOSCANAPICCOLA|TOSCANAPICCOLO|TOSCANAPRODUTIVIDADE|TOSCANART|TRADENCIATRENDVARIATION|TRENDAVERAGE|TRENDCLOUD|TRENDDIFUSOR|TRENDFLOW|TRENDSNIPER|TRENDSOLDIER|TRENDVOLAG|TRIX|TRIXM|TRPTAX|TRPTAXFuturo|TWOMVVOLATILITY|Tilson|TimeAgrBuySell|TimeAgrSellBuy|TimeAgrTotal|TopBottomDetector|Trades|TwoMVAggression|TwoMVPower|VSS|VWAP|VWAPDate|VWAPMonthly|VWAPWeekly|VWMA|Valerie|VolumeAgent|VolumeAtPrice|Williams)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-livro": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(AskPrice|AskSize|BidPrice|BidSize|BookSpread|BuyOfferCount|GetAsset|GetFeed|IsBMF|Lote|MinOrderIncrement|MinOrderQty|MinPriceIncrement|SellOfferCount|TotalBuyQtd|TotalSellQtd)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-matematicas": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(ABS|Arctangent|Ceiling|Combination|Cos|Cosine|Cotangent|Exp|ExpValue|ExtremePriceRatio|Factorial|FastD|FastK|Floor|FracPortion|GCD|IntPortion|Log|LogN|Max|Min|MinutesToTime|Mod|Neg|NumUnits|PercentR|Permutation|Pos|Power|PowerF|Random|Round|Round2Fraction|Sign|Sin|Sine|SlowK|Sqrt|Square|Tangent|UltimateOscillator|Volatility|VolumeOsc|VolumeROC)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-opcoes": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(Delta|Gamma|Rho|Strike|Theta|Vega)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-screening": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(Select)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-usuario": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(Cum|FastKCustom|HarmonicMean|Highest|HighestBar|Lowest|LowestBar|Media|MediaExp|MidPoint|PercentChange|PriceOscillator|RateOfChange|SlowD|StdDevs|Summation|TriAverage|UlcerIndex|WAverage|WellesSum|xAverage)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    },
+    "ntsl-functions-utils": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(AssetHasValue|BoolToString|CompareFloat|FloatToString)\\b",
+          "name": "support.function.ntsl"
+        }
+      ]
+    }
+  }
+}

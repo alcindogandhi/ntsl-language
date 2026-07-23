@@ -1,0 +1,39 @@
+{
+  "name": "ntsl-language",
+  "displayName": "NTSL Language Basics",
+  "description": "Syntax highlighting for Nelogica ProfitChart NTSL (.ntsl) files, derived from Pascal.",
+  "version": "0.0.1",
+  "publisher": "alcindogandhi",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "extensionDependencies": [
+    "AnsonYeung.pascal-language-basics"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "ntsl",
+        "extensions": [
+          ".ntsl"
+        ],
+        "aliases": [
+          "NTSL",
+          "ntsl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ntsl",
+        "scopeName": "source.ntsl",
+        "path": "./syntaxes/ntsl.tmLanguage.json"
+      }
+    ]
+  }
+}
