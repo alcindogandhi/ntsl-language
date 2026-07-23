@@ -5,6 +5,10 @@
   "version": "0.0.1",
   "publisher": "alcindogandhi",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alcindogandhi/ntsl-language.git"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },
